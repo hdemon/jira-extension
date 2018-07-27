@@ -16,6 +16,10 @@ module.exports = _.merge({}, config, {
     path: path.resolve(__dirname, '../build/prod'),
   },
 
+  optimization: {
+    minimize: true
+  },
+
   // devtool: 'eval',
   plugins: [
     new CopyWebpackPlugin([
@@ -36,18 +40,5 @@ module.exports = _.merge({}, config, {
       name: appName
     }),
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        screw_ie8: true,
-        warnings: false
-      },
-      mangle: {
-        screw_ie8: true
-      },
-      output: {
-        comments: false,
-        screw_ie8: true
-      }
-    }),
   ]
 });
